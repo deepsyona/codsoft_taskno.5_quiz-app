@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Quiz from './Components/Quiz/Quiz'
+import Login from './Components/Login'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+const [user, setUser] = useState(null)
+
+const handleLogin = (email, password)=> {
+  if(email == 'd@b.com' && password=='123'){
+    setUser('admin')
+  }
+  else{
+    alert("Invalid Credentials")
+  }
 }
 
-export default App;
+
+  return (
+    (!user ? <Login handleLogin={handleLogin}/> : <Quiz/>)
+  )
+}
+
+export default App
